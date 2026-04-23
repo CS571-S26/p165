@@ -1,15 +1,20 @@
 import { Card, Button } from "react-bootstrap"
+import { useNavigate } from "react-router-dom";
+import ToDo from "../big4/ToDo"
 
 export default function ListsPage()
 {
+    const navigate = useNavigate();
+
     return <div>
         <h1>Lists</h1>
         <Card style={{
             borderRadius: 10,
             maxHeight: 100,
             maxWidth: 100
-        }}>
-            <p>This is where the to-do will go</p>
+        }}
+        onClick={() => navigate("/lists/todo")}>
+            To do list
         </Card>
         <br></br>
         <br></br>

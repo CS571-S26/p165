@@ -6,7 +6,7 @@ export default function NavBar() {
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
         <Navbar.Brand as={NavLink} to="/">
-          Home
+          Toolbox
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
