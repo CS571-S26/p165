@@ -5,7 +5,7 @@ export default function AboutPage()
     return <Container className="page-layout">
         <h1>About This Website</h1>
 
-        <h2>Our Mission</h2>
+        <h2>Our Mission!</h2>
         <p>
             A few years ago when I decided to start taking a more purposeful approach to 
             organizing my life, I discovered the my phone was a major black hole for my 
@@ -30,7 +30,7 @@ export default function AboutPage()
             The goal of Lists is to allow a user to check off items like a typical to do list.
             By default, all users are given a To-Do list, but we encourage users to make 
             more specific lists for things like grocery runs, packing for travel, or anything
-            they might think of.
+            they might think of. 
         </p>
         <h3>Routines</h3>
         <p>
