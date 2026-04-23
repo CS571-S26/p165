@@ -1,7 +1,7 @@
 import { Card, Button } from "react-bootstrap"
 
 export default function BudgetPage()
-{
+{   
     return <div>
         <h1>Budget</h1>
         <Card style={{
