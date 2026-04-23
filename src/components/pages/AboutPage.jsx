@@ -1,8 +1,8 @@
-
+import { Container } from "react-bootstrap";
 
 export default function AboutPage()
 {
-    return <div>
+    return <Container className="page-layout">
         <h1>About This Website</h1>
 
         <h2>Our Mission</h2>
@@ -48,5 +48,5 @@ export default function AboutPage()
             By default, all users are given a master budget. We do encourage you to make smaller
             ones for things like vacation spending or holiday shopping!
         </p>
-    </div>
+    </Container>
 }

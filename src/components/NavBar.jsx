@@ -13,15 +13,19 @@ export default function NavBar() {
 
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link as={NavLink} to="/lists">
-              Lists
+            <Nav.Link as={NavLink} to="/lists/todo">
+              To Do
             </Nav.Link>
 
-            <Nav.Link as={NavLink} to="/routines">
-              Routines
+            <Nav.Link as={NavLink} to="routines/morning_routine">
+              Morning Routine
             </Nav.Link>
 
-            <Nav.Link as={NavLink} to="/budgets">
+            <Nav.Link as={NavLink} to="routines/night_routine">
+              Night Routine
+            </Nav.Link>
+
+            <Nav.Link as={NavLink} to="/budgets/master_budget">
               Budget
             </Nav.Link>
 

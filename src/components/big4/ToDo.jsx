@@ -41,8 +41,8 @@ export default function ToDo() {
 
   return (
     <Container className="py-3">
-      <Button variant="secondary" onClick={() => navigate("/lists")}>
-        Back to Lists
+      <Button className="list-btn" onClick={() => navigate("/")}>
+        Back
       </Button>
 
       <h1 className="mt-3">To-Do List</h1>
@@ -54,7 +54,7 @@ export default function ToDo() {
           onChange={(e) => setInput(e.target.value)}
           placeholder="Add a task"
         />
-        <Button onClick={addTask}>Add</Button>
+        <Button className="list-btn" onClick={addTask}>Add</Button>
       </Stack>
 
       {/* Task List */}
@@ -70,9 +70,6 @@ export default function ToDo() {
               onChange={() => toggleTask(index)}
               label={
                 <span
-                  style={{
-                    textDecoration: task.completed ? "line-through" : "none",
-                  }}
                 >
                   {task.text}
                 </span>
@@ -80,7 +77,7 @@ export default function ToDo() {
             />
 
             <Button
-              variant="danger"
+              className="list-btn"
               size="sm"
               onClick={() => deleteTask(index)}
             >

@@ -1,0 +1,20 @@
+.routine-card {
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 8px;
+
+    background: linear-gradient(
+        145deg,
+        rgba(0, 123, 255, 0.12),
+        rgba(0, 123, 255, 0.05)
+    );
+
+    width: 100px;
+    height: 100px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 8px 24px rgba(0, 123, 255, 0.35);
+}
