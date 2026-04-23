@@ -11,7 +11,10 @@ export default function BudgetPage()
         }}>
             <p>This is where the default budget will go</p>
         </Card>
-
-        <Button onClick={() => alert("This button is not yet implemented")}>+</Button>
+        <br></br>
+        <br></br>
+        <h2>Your Budgets</h2>
+        <br></br>
+        <Button onClick={() => alert("This button is not yet implemented")}>Add Budget</Button>
     </div>
 }

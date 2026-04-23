@@ -40,7 +40,7 @@ export default function AboutPage()
             calendar to be useful there either. These are tasks like taking the trash out, 
             shaving, or anything that can take place over multiple days, but also tasks
             that need to be taken care of more than once per day, like feeding pets or 
-            brushing your teeth (seriously, brush your teeth). By defualt, all users are 
+            brushing your teeth (seriously, brush your teeth). By default, all users are 
             given morning and night routines to encourage good sleep.
         </p>
         <h3>Budget</h3>
