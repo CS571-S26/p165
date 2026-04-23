@@ -6,6 +6,8 @@ import RoutinesPage from "./pages/RoutinesPage";
 import AboutPage from "./pages/AboutPage";
 import Layout from "./Layout";
 import ToDo from "./big4/ToDo";
+import MorningRoutine from "./big4/MorningRoutine";
+import MasterBudget from "./big4/MasterBudget";
 
 export default function TheRouterTM()
 {
@@ -18,7 +20,11 @@ export default function TheRouterTM()
                 <Route path="lists/todo" element={<ToDo />} />
 
                 <Route path="routines" element={<RoutinesPage />} />
-                <Route path="budget" element={<BudgetPage />} />
+                
+
+                <Route path="budgets" element={<BudgetPage />} />
+                <Route path="budgets/master_budget" element={<MasterBudget />} />
+
                 <Route path="about" element={<AboutPage />} />
             </Route>
         </Routes>

@@ -21,7 +21,7 @@ export default function NavBar() {
               Routines
             </Nav.Link>
 
-            <Nav.Link as={NavLink} to="/budget">
+            <Nav.Link as={NavLink} to="/budgets">
               Budget
             </Nav.Link>
 
