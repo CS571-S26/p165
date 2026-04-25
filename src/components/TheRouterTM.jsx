@@ -6,8 +6,8 @@ import RoutinesPage from "./pages/RoutinesPage";
 import AboutPage from "./pages/AboutPage";
 import Layout from "./Layout";
 import ToDo from "./big4/ToDo";
-import MorningRoutine from "./big4/MorningRoutine";
-import NightRoutine from "./big4/NightRoutine";
+import MorningRoutine from "./big4/routines/MorningRoutine";
+import NightRoutine from "./big4/routines/NightRoutine";
 import MasterBudget from "./big4/MasterBudget";
 
 export default function TheRouterTM()
