@@ -9,7 +9,10 @@ export default function TaskList(props) {
   return (
     <ListGroup>
       {props.tasks.map((task) => (
-        <TaskItem key={task.id} task={task} />
+        <TaskItem 
+            key={task.id} 
+            task={task} 
+        />
       ))}
     </ListGroup>
   );

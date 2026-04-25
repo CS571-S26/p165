@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Container, Button, Form } from "react-bootstrap";
+import { Container, Button, Form, ListGroup } from "react-bootstrap";
 
 import { isTaskScheduled } from "./helpers/Schedule";
 import ViewMode from "./helpers/ViewMode";
@@ -24,6 +24,8 @@ export default function MorningRoutine() {
   }
 
   const [mode, setMode] = useState("view");
+
+  const today = new Date().toISOString().split("T")[0];
   const [selectedDate, setSelectedDate] = useState(
     new Date().toISOString().split("T")[0]
   );
@@ -41,7 +43,13 @@ export default function MorningRoutine() {
   const [newInterval, setNewInterval] = useState(1);
 
   const visibleTasks = tasks.filter((task) =>
-    isTaskScheduled(task, selectedDate)
+    isTaskScheduled(task, selectedDate) &&
+    !task.completed?.[selectedDate]
+  );
+
+  const completedTasks = tasks.filter((task) =>
+    isTaskScheduled(task, selectedDate) &&
+    task.completed?.[selectedDate]
   );
 
   function addTask() {
@@ -60,6 +68,31 @@ export default function MorningRoutine() {
 
     setNewTaskName("");
     setNewInterval(1);
+  }
+
+  function completeAllTasks(dateKey) {
+    if (dateKey !== today) {
+      const confirmed = window.confirm(
+        "You are completing tasks for a different day. Continue?"
+      );
+
+      if (!confirmed) return;
+    }
+    
+    setTasks((prev) =>
+      prev.map((task) => {
+        // Only affect tasks scheduled for this date
+        if (!isTaskScheduled(task, dateKey)) return task;
+
+        return {
+          ...task,
+          completed: {
+            ...task.completed,
+            [dateKey]: true,
+          },
+        };
+      })
+    );
   }
 
   function deleteTask(id) {
@@ -104,9 +137,22 @@ export default function MorningRoutine() {
       </Form.Group>
 
       {mode === "view" ? (
-        <ViewMode 
-          visibleTasks={visibleTasks}
+        <Container>
+          <ViewMode 
+            visibleTasks={visibleTasks}
+            selectedDate={selectedDate}
+            completeAllTasks={completeAllTasks}
           />
+          <h5 className="mt-4">Completed</h5>
+
+          <ListGroup>
+            {completedTasks.map((task) => (
+              <ListGroup.Item key={task.id}>
+                {task.name}
+              </ListGroup.Item>
+            ))}
+          </ListGroup>
+        </Container>
       ) : (
         <EditMode
           tasks={tasks}
