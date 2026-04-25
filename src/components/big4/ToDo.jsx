@@ -11,12 +11,21 @@ export default function ToDo() {
     return stored ? JSON.parse(stored) : [];
   });
 
+  const [recentCompleted, setRecentCompleted] = useState(() => {
+    const stored = localStorage.getItem("recent-completed");
+    return stored ? JSON.parse(stored) : [];
+  });
+
   const [input, setInput] = useState("");
 
   // Save to localStorage whenever tasks change
   useEffect(() => {
     localStorage.setItem("todo-tasks", JSON.stringify(tasks));
   }, [tasks]);
+
+  useEffect(() => {
+    localStorage.setItem("recent-completed", JSON.stringify(recentCompleted));
+  }, [recentCompleted]);
 
   const addTask = () => {
     if (input.trim() === "") return;
@@ -35,8 +44,29 @@ export default function ToDo() {
     setTasks(updated);
   };
 
-  const deleteTask = (index) => {
+  const completeTask = (index) => {
+    const completedTask = tasks[index];
+
+    // Add to recent completed (keep only last 5)
+    setRecentCompleted((prev) => {
+      const updated = [completedTask, ...prev];
+      return updated.slice(0, 5);
+    });
+
+    // Remove from active tasks
     setTasks(tasks.filter((_, i) => i !== index));
+  };
+
+  const completeAllTasks = () => {
+      const completedTasks = tasks.filter(task => task.completed);
+      if (completedTasks.length === 0) return;
+
+      setRecentCompleted((prev) => {
+        const updated = [...completedTasks.reverse(), ...prev];
+        return updated.slice(0, 5);
+      });
+
+      setTasks(tasks.filter(task => !task.completed));
   };
 
   return (
@@ -79,10 +109,24 @@ export default function ToDo() {
             <Button
               className="list-btn"
               size="sm"
-              onClick={() => deleteTask(index)}
+              disabled={!task.completed}
+              onClick={() => completeTask(index)}
             >
-              Delete
+              Complete
             </Button>
+          </ListGroup.Item>
+        ))}
+      </ListGroup>
+      <Button
+        className="list-btn"
+        size="sm"
+        onClick={completeAllTasks}
+      >Complete All</Button>
+      <h2>Recently Completed</h2>
+      <ListGroup className="mt-3">
+        {recentCompleted.map((task, index) => (
+          <ListGroup.Item key={index}>
+            {task.text}
           </ListGroup.Item>
         ))}
       </ListGroup>
