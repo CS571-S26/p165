@@ -13,7 +13,12 @@ export default function MorningRoutine() {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (!stored) return [];
     try {
-      return JSON.parse(stored);
+      const parsed = JSON.parse(stored);
+
+      return parsed.map((task) => ({
+        ...task,
+        completed: task.completed || {}, 
+      }));
     } catch {
       return [];
     }
@@ -34,6 +39,7 @@ export default function MorningRoutine() {
   );
 
   const [tasks, setTasks] = useState(() => loadTasks());
+  const [selectedTasks, setSelectedTasks] = useState([]);
 
   useEffect(() => {
     saveTasks(tasks);
@@ -69,20 +75,29 @@ export default function MorningRoutine() {
     setNewTaskName("");
     setNewInterval(1);
   }
+    
+  function completeSelectedTasks(dateKey) {
+    const hasValidSelection = tasks.some(
+      (task) =>
+        selectedTasks.includes(task.id) &&
+        isTaskScheduled(task, dateKey)
+    );
 
-  function completeAllTasks(dateKey) {
-    if (dateKey !== today) {
+    if (dateKey !== today && hasValidSelection) {
       const confirmed = window.confirm(
         "You are completing tasks for a different day. Continue?"
       );
-
       if (!confirmed) return;
     }
-    
+
     setTasks((prev) =>
       prev.map((task) => {
-        // Only affect tasks scheduled for this date
-        if (!isTaskScheduled(task, dateKey)) return task;
+        if (
+          !selectedTasks.includes(task.id) ||
+          !isTaskScheduled(task, dateKey)
+        ) {
+          return task;
+        }
 
         return {
           ...task,
@@ -93,7 +108,10 @@ export default function MorningRoutine() {
         };
       })
     );
+
+    setSelectedTasks([]);
   }
+  
 
   function deleteTask(id) {
     setTasks((prev) => prev.filter((task) => task.id !== id));
@@ -141,7 +159,9 @@ export default function MorningRoutine() {
           <ViewMode 
             visibleTasks={visibleTasks}
             selectedDate={selectedDate}
-            completeAllTasks={completeAllTasks}
+            completeSelectedTasks={completeSelectedTasks}
+            selectedTasks={selectedTasks}
+            setSelectedTasks={setSelectedTasks}
           />
           <h5 className="mt-4">Completed</h5>
 

@@ -12,6 +12,8 @@ export default function TaskList(props) {
         <TaskItem 
             key={task.id} 
             task={task} 
+            selectedTasks={props.selectedTasks}
+            toggleSelected={props.toggleSelected}
         />
       ))}
     </ListGroup>
