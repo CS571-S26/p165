@@ -5,10 +5,10 @@ import BudgetPage from "./pages/BudgetPage";
 import RoutinesPage from "./pages/RoutinesPage";
 import AboutPage from "./pages/AboutPage";
 import Layout from "./Layout";
-import ToDo from "./big4/ToDo";
+import ToDo from "./big4/list/ToDo";
 import MorningRoutine from "./big4/routines/MorningRoutine";
 import NightRoutine from "./big4/routines/NightRoutine";
-import MasterBudget from "./big4/MasterBudget";
+import MasterBudget from "./big4/budget/MasterBudget";
 
 export default function TheRouterTM()
 {
