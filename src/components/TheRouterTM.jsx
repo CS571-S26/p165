@@ -18,15 +18,10 @@ export default function TheRouterTM()
             <Route path="/" element={<Layout />}>
                 <Route index element={<HomePage />} />
 
-                <Route path="lists" element={<ListsPage />} />
-                <Route path="lists/todo" element={<ToDo />} />
-
-                <Route path="routines" element={<RoutinesPage />} />
-                <Route path="routines/morning_routine" element={<MorningRoutine />} />
-                <Route path="routines/night_routine" element={<NightRoutine />} />
-
-                <Route path="budgets" element={<BudgetPage />} />
-                <Route path="budgets/master_budget" element={<MasterBudget />} />
+                <Route path="list" element={<ToDo />} />
+                <Route path="morning_routine" element={<MorningRoutine />} />
+                <Route path="night_routine" element={<NightRoutine />} />
+                <Route path="budget" element={<MasterBudget />} />
 
                 <Route path="about" element={<AboutPage />} />
             </Route>
