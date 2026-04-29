@@ -45,3 +45,34 @@
     font-family: 'Courier New', Courier, monospace;
 }
 
+.top-bar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.back-card {
+  justify-self: start;
+}
+
+.page-title {
+  justify-self: center;
+  margin: 0;
+}
+
+.add-card {
+  justify-self: end;
+}
+
+.task-text {
+    display: block;
+    width: 100%;
+
+    font-size: clamp(0.85rem, 1.2vw, 1rem);
+
+    white-space: normal;
+    overflow-wrap: anywhere;
+
+    line-height: 1.2;
+}
