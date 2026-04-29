@@ -70,7 +70,8 @@ export default function ToDo() {
   };
 
   return (
-    <Container className="py-3">
+    <div className="list-background">
+    <div className="list-layout">
       <Button className="list-btn" onClick={() => navigate("/")}>
         Back
       </Button>
@@ -130,6 +131,7 @@ export default function ToDo() {
           </ListGroup.Item>
         ))}
       </ListGroup>
-    </Container>
+    </div>
+    </div>
   );
 }

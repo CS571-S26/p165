@@ -10,6 +10,7 @@ import MorningRoutine from "./big4/routines/MorningRoutine";
 import NightRoutine from "./big4/routines/NightRoutine";
 import MasterBudget from "./big4/budget/MasterBudget";
 import Transactions from "./big4/budget/helpers/Transactions";
+import BadLink from "./pages/BadLink";
 
 export default function TheRouterTM()
 {
@@ -24,6 +25,8 @@ export default function TheRouterTM()
                 <Route path="budget" element={<MasterBudget />} />
 
                 <Route path="about" element={<AboutPage />} />
+
+                <Route path="*" element={<BadLink />} />
             </Route>
         </Routes>
     </HashRouter>

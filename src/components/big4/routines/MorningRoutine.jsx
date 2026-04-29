@@ -128,8 +128,8 @@ export default function MorningRoutine() {
   const isToday = selectedDate === new Date().toISOString().split("T")[0];
 
   return (
-    <Container className="p-3">
-      <h2>Morning Routine</h2>
+    <Container className="page-layout">
+      <h1>Morning Routine</h1>
 
       <Button
         className="mb-3"

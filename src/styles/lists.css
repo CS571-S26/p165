@@ -1,11 +1,12 @@
 .list-card {
     border: 1px solid #ddd;
     padding: 12px;
-    border-radius: 8px;
+    border-radius: 10px;
+
     background: linear-gradient(
         145deg,
-        rgba(255, 140, 0, 0.12),
-        rgba(255, 120, 0, 0.05)
+        rgba(40, 167, 69, 0.12),
+        rgba(40, 167, 69, 0.05)
     );
 
     width: 100px;
@@ -15,7 +16,27 @@
     align-items: center;
     justify-content: center;
 
-    box-shadow: 0 8px 24px rgba(255, 100, 0, 0.6);
+    box-shadow: 0 8px 24px rgba(40, 167, 69, 0.25);
+
+    cursor: pointer;
+
+    transition: 
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+    will-change: transform;
+}
+
+.list-card:hover {
+    transform: scale(1.06) translateY(-4px);
+
+    box-shadow: 
+        0 16px 40px rgba(40, 167, 69, 0.35);
+}
+
+.list-card:active {
+    transform: scale(0.97) translateY(0px);
+    box-shadow: 0 6px 16px rgba(40, 167, 69, 0.2);
 }
 
 .list-btn.btn {
@@ -32,3 +53,21 @@
     color: white;
 }
 
+.list-background {
+    background-image: linear-gradient(to top, rgba(40, 167, 69, 0.35), rgba(40, 167, 69, 0.12));
+    min-height: 100vh;
+}
+
+.list-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0px 20px;
+    background-color: white;
+    box-shadow: 0 8px 24px rgba(40, 167, 69, 0.25);
+    border-radius: 20px;
+}

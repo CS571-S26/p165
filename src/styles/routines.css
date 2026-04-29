@@ -1,4 +1,4 @@
-.routine-card {
+.night-routine-card {
     border: 1px solid #ddd;
     padding: 12px;
     border-radius: 8px;
@@ -17,4 +17,63 @@
     justify-content: center;
 
     box-shadow: 0 8px 24px rgba(0, 123, 255, 0.35);
+
+    cursor: pointer;
+
+    transition: 
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+    will-change: transform;
+}
+
+/* Hover shadow only (no color change) */
+.night-routine-card:hover {
+    transform: scale(1.06) translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0, 123, 255, 0.45);
+}
+
+.night-routine-card:active {
+    transform: scale(0.97) translateY(0px);
+    box-shadow: 0 6px 16px rgba(0, 123, 255, 0.25);
+}
+
+.morning-routine-card {
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 8px;
+
+    background: linear-gradient(
+        145deg,
+        rgba(255, 140, 0, 0.12),
+        rgba(255, 120, 0, 0.05)
+    );
+
+    width: 100px;
+    height: 100px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    box-shadow: 0 8px 24px rgba(255, 100, 0, 0.4);
+
+    cursor: pointer;
+
+    transition: 
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+    will-change: transform;
+}
+
+.morning-routine-card:hover {
+    transform: scale(1.06) translateY(-4px);
+    box-shadow: 0 16px 40px rgba(255, 100, 0, 0.55);
+}
+
+.morning-routine-card:active {
+    transform: scale(0.97) translateY(0px);
+    box-shadow: 0 6px 16px rgba(255, 100, 0, 0.3);
 }

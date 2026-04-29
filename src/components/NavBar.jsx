@@ -1,9 +1,21 @@
 import { Navbar, Nav, Container } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 export default function NavBar() {
+  const location = useLocation();
+
+  let navbarClass = "navbar-base";
+
+  if (location.pathname === "/list") {
+    navbarClass = "navbar-list";
+  } else if (location.pathname === "/morning_routine") {
+    navbarClass = "navbar-morning";
+  } else if (location.pathname === "/night_routine") {
+    navbarClass = "navbar-night";
+  } 
+
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
+    <Navbar className={navbarClass}>
       <Container>
         <Navbar.Brand as={NavLink} to="/">
           Toolbox
@@ -13,24 +25,16 @@ export default function NavBar() {
 
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link as={NavLink} to="/lists/todo">
-              To Do
+            <Nav.Link as={NavLink} to="/list">
+              To Do List
             </Nav.Link>
 
-            <Nav.Link as={NavLink} to="routines/morning_routine">
+            <Nav.Link as={NavLink} to="/morning_routine">
               Morning Routine
             </Nav.Link>
 
-            <Nav.Link as={NavLink} to="routines/night_routine">
+            <Nav.Link as={NavLink} to="/night_routine">
               Night Routine
-            </Nav.Link>
-
-            <Nav.Link as={NavLink} to="/budgets/master_budget">
-              Budget
-            </Nav.Link>
-
-            <Nav.Link as={NavLink} to="/about">
-              About
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
