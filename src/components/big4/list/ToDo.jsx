@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Form, ListGroup, Container, Stack } from "react-bootstrap";
+import { Button, Form, ListGroup, Stack } from "react-bootstrap";
 
 export default function ToDo() {
   const navigate = useNavigate();
 
-  // Load initial state from localStorage
   const [tasks, setTasks] = useState(() => {
     const stored = localStorage.getItem("todo-tasks");
     return stored ? JSON.parse(stored) : [];
@@ -18,7 +17,6 @@ export default function ToDo() {
 
   const [input, setInput] = useState("");
 
-  // Save to localStorage whenever tasks change
   useEffect(() => {
     localStorage.setItem("todo-tasks", JSON.stringify(tasks));
   }, [tasks]);
@@ -32,106 +30,130 @@ export default function ToDo() {
 
     setTasks([
       ...tasks,
-      { text: input, completed: false }
+      { id: crypto.randomUUID(), text: input, completed: false }
     ]);
 
     setInput("");
   };
 
-  const toggleTask = (index) => {
-    const updated = [...tasks];
-    updated[index].completed = !updated[index].completed;
-    setTasks(updated);
+  const toggleTask = (id) => {
+    setTasks(tasks.map(task =>
+      task.id === id
+        ? { ...task, completed: !task.completed }
+        : task
+    ));
   };
 
-  const completeTask = (index) => {
-    const completedTask = tasks[index];
+  const completeTask = (id) => {
+    const completedTask = tasks.find(task => task.id === id);
 
-    // Add to recent completed (keep only last 5)
     setRecentCompleted((prev) => {
       const updated = [completedTask, ...prev];
       return updated.slice(0, 5);
     });
 
-    // Remove from active tasks
-    setTasks(tasks.filter((_, i) => i !== index));
+    setTasks(tasks.filter(task => task.id !== id));
   };
 
   const completeAllTasks = () => {
-      const completedTasks = tasks.filter(task => task.completed);
-      if (completedTasks.length === 0) return;
+    const completedTasks = tasks.filter((task) => task.completed);
+    if (completedTasks.length === 0) return;
 
-      setRecentCompleted((prev) => {
-        const updated = [...completedTasks.reverse(), ...prev];
-        return updated.slice(0, 5);
-      });
+    setRecentCompleted((prev) => {
+      const updated = [...[...completedTasks].reverse(), ...prev];
+      return updated.slice(0, 5);
+    });
 
-      setTasks(tasks.filter(task => !task.completed));
+    setTasks((prevTasks) => prevTasks.filter((task) => !task.completed));
   };
 
   return (
     <div className="list-background">
-    <div className="list-layout">
-      <Button className="list-btn" onClick={() => navigate("/")}>
-        Back
-      </Button>
+      <div className="list-layout">
+        <Button className="list-btn" onClick={() => navigate("/")}>
+          Back
+        </Button>
 
-      <h1 className="mt-3">To-Do List</h1>
+        <h1 className="mt-3">To-Do List</h1>
 
-      {/* Input Row */}
-      <Stack direction="horizontal" gap={2} className="my-3">
-        <Form.Control
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Add a task"
-        />
-        <Button className="list-btn" onClick={addTask}>Add</Button>
-      </Stack>
+        {/* Accessible Form */}
+        <Form
+          onSubmit={(e) => {
+            e.preventDefault();
+            addTask();
+          }}
+        >
+          <Form.Group controlId="taskInput">
+            <Form.Label>Add a new task</Form.Label>
 
-      {/* Task List */}
-      <ListGroup>
-        {tasks.map((task, index) => (
-          <ListGroup.Item
-            key={index}
-            className="d-flex justify-content-between align-items-center"
-          >
-            <Form.Check
-              type="checkbox"
-              checked={task.completed}
-              onChange={() => toggleTask(index)}
-              label={
-                <span
+            <Stack direction="horizontal" gap={2} className="my-3">
+              <Form.Control
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder="Enter task"
+              />
+              <Button type="submit" className="list-btn">
+                Add
+              </Button>
+            </Stack>
+          </Form.Group>
+        </Form>
+
+        {/* Task List */}
+        <ListGroup>
+          {tasks.map((task) => {
+            const checkboxId = `task-${task.id}`;
+
+            return (
+              <ListGroup.Item
+                key={task.id}
+                className="d-flex justify-content-between align-items-center"
+              >
+                <Form.Check
+                  id={checkboxId}
+                  type="checkbox"
+                  checked={task.completed}
+                  onChange={() => toggleTask(task.id)}
+                  label={task.text}
+                />
+
+                <Button
+                  className="list-btn"
+                  size="sm"
+                  disabled={!task.completed}
+                  onClick={() => completeTask(task.id)}
+                  aria-label={`Complete task: ${task.text}`}
                 >
-                  {task.text}
-                </span>
-              }
-            />
+                  Complete
+                </Button>
+              </ListGroup.Item>
+            );
+          })}
+        </ListGroup>
 
-            <Button
-              className="list-btn"
-              size="sm"
-              disabled={!task.completed}
-              onClick={() => completeTask(index)}
-            >
-              Complete
-            </Button>
-          </ListGroup.Item>
-        ))}
-      </ListGroup>
-      <Button
-        className="list-btn"
-        size="sm"
-        onClick={completeAllTasks}
-      >Complete All</Button>
-      <h2>Recently Completed</h2>
-      <ListGroup className="mt-3">
-        {recentCompleted.map((task, index) => (
-          <ListGroup.Item key={index}>
-            {task.text}
-          </ListGroup.Item>
-        ))}
-      </ListGroup>
-    </div>
+        <Button
+          className="list-btn"
+          size="sm"
+          onClick={completeAllTasks}
+          aria-label="Complete all selected tasks"
+        >
+          Complete All
+        </Button>
+
+        <h2 id="recent-completed-heading">Recently Completed</h2>
+
+        <ListGroup
+          className="mt-3"
+          aria-labelledby="recent-completed-heading"
+        >
+          {recentCompleted.map((task, index) => (
+            <ListGroup.Item key={index}>
+              {task.text}
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
+      </div>
     </div>
   );
 }

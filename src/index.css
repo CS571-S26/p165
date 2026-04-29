@@ -10,11 +10,11 @@
 }
 
 .page-background {
-    background-image: linear-gradient(to bottom, #ffecd2 0%, #fcb69f 100%);
+    background-image: linear-gradient(to bottom, #e0c3fc 0%, #8ec5fc 100%);
 }
 
 .navbar-base {
-    background: linear-gradient(to bottom, #fcb69f, #ffecd2);
+    background: linear-gradient(to bottom, #8ec5fc, #e0c3fc);
     transition: background-color 0.4s ease;
 }
 
@@ -39,5 +39,9 @@
 .display-text {
     max-width: 500px;
     margin: 0 0 4px 0;
+}
+
+* {
+    font-family: 'Courier New', Courier, monospace;
 }
 
