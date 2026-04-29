@@ -39,6 +39,47 @@
     box-shadow: 0 6px 16px rgba(40, 167, 69, 0.2);
 }
 
+.list-card-front-page {
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 8px;
+
+    background: linear-gradient(
+        145deg,
+        rgba(40, 167, 69, 0.12),
+        rgba(40, 167, 69, 0.05)
+    );
+
+    max-width: 100px;
+    max-height: 100px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 8px 24px rgba(40, 167, 69, 0.25);
+
+    cursor: pointer;
+
+    transition: 
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+    will-change: transform;
+}
+
+.list-card-front-page:hover {
+    transform: scale(1.06) translateY(-4px);
+
+    box-shadow: 
+        0 16px 40px rgba(40, 167, 69, 0.35);
+}
+
+.list-card-front-page:active {
+    transform: scale(0.97) translateY(0px);
+    box-shadow: 0 6px 16px rgba(40, 167, 69, 0.2);
+}
+
 .list-task-card {
     border: 1px solid #ddd;
     padding: 12px;
@@ -63,6 +104,19 @@
         transform 0.25s ease,
         box-shadow 0.25s ease;
 }
+
+.list-task-card:hover {
+    transform: scale(1.06) translateY(-4px);
+    box-shadow: 
+        0 16px 40px rgba(40, 167, 69, 0.35);
+}
+
+.list-task-card:active {
+    transform: scale(0.97) translateY(0px);
+    box-shadow: 0 6px 16px rgba(40, 167, 69, 0.2);
+
+}
+
 
 .list-task-card:hover {
     transform: scale(1.06) translateY(-4px);

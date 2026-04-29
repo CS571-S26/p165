@@ -38,15 +38,15 @@
     box-shadow: 0 6px 16px rgba(0, 123, 255, 0.25);
 }
 
-.morning-routine-card {
+.night-routine-card-front-page {
     border: 1px solid #ddd;
     padding: 12px;
     border-radius: 8px;
 
     background: linear-gradient(
         145deg,
-        rgba(255, 140, 0, 0.12),
-        rgba(255, 120, 0, 0.05)
+        rgba(0, 123, 255, 0.12),
+        rgba(0, 123, 255, 0.05)
     );
 
     width: 100px;
@@ -55,7 +55,45 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
+
+    box-shadow: 0 8px 24px rgba(0, 123, 255, 0.35);
+
+    cursor: pointer;
+
+    transition: 
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+    will-change: transform;
+}
+
+.night-routine-card-front-page:hover {
+    transform: scale(1.06) translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0, 123, 255, 0.45);
+}
+
+.night-routine-card-front-page:active {
+    transform: scale(0.97) translateY(0px);
+    box-shadow: 0 6px 16px rgba(0, 123, 255, 0.25);
+}
+
+.morning-routine-card {
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 10px;
+
+    background: linear-gradient(
+        145deg,
+        rgba(255, 140, 0, 0.12),
+        rgba(255, 120, 0, 0.05)
+    );
+
+    max-width: 300px;
+    max-height: 100px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     box-shadow: 0 8px 24px rgba(255, 100, 0, 0.4);
 
@@ -76,4 +114,63 @@
 .morning-routine-card:active {
     transform: scale(0.97) translateY(0px);
     box-shadow: 0 6px 16px rgba(255, 100, 0, 0.3);
+}
+
+.morning-routine-card-front-page {
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 8px;
+
+    background: linear-gradient(
+        145deg,
+        rgba(255, 140, 0, 0.12),
+        rgba(255, 120, 0, 0.05)
+    );
+
+    width: 100px;
+    height: 100px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 8px 24px rgba(255, 100, 0, 0.4);
+
+    cursor: pointer;
+
+    transition: 
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+    will-change: transform;
+}
+
+.morning-routine-card-front-page:hover {
+    transform: scale(1.06) translateY(-4px);
+    box-shadow: 0 16px 40px rgba(255, 100, 0, 0.55);
+}
+
+.morning-routine-card-front-page:active {
+    transform: scale(0.97) translateY(0px);
+    box-shadow: 0 6px 16px rgba(255, 100, 0, 0.3);
+}
+
+
+.morning-routine-background {
+    background-image: linear-gradient(to top,rgba(255, 100, 0, 0.4),rgba(255, 140, 0, 0.12));
+    min-height: 100vh;
+}
+
+.morning-routine-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0px 20px;
+    background-color: white;
+    box-shadow: 0 8px 24px rgba(255, 100, 0, 0.4);
+    border-radius: 20px;
 }

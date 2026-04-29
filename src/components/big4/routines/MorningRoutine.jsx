@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
-import { Container, Button, Form, ListGroup } from "react-bootstrap";
+import { Container, Card, Form, ListGroup, Row, Col } from "react-bootstrap";
+import { useNavigate } from 'react-router-dom';
 
 import { isTaskScheduled } from "./helpers/Schedule";
 import ViewMode from "./helpers/ViewMode";
 import EditMode from "./helpers/EditMode";
 
 export default function MorningRoutine() {
-
+  const navigate = useNavigate();
   const STORAGE_KEY = "morningTasks";
 
   function loadTasks() {
@@ -128,17 +129,54 @@ export default function MorningRoutine() {
   const isToday = selectedDate === new Date().toISOString().split("T")[0];
 
   return (
-    <Container className="page-layout">
-      <h1>Morning Routine</h1>
+    <div className="morning-routine-background">
+    <div className="morning-routine-layout">
+      <br></br>
+      <Container>
+        <Row className="align-items-center">
+            <Col xs="auto">
+              <Card
+                as="button"
+                className="morning-routine-card back-card"
+                onClick={() => navigate("/")}
+              >
+                ← Back
+              </Card>
+            </Col>
+          <Col className="text-center">
+            <h1 style={{marginLeft: "100px"}}>Morning Routine</h1>
+          </Col>
+          <Col xs="auto" className="d-flex justify-content-end">
+            <Card
+              as="button"
+              className="morning-routine-card add-card"
+              onClick={() =>
+                setMode(mode === "view" ? "edit" : "view")
+              }
+            >
+              Switch to {mode === "view" ? "Edit" : "View"}
+            </Card>
+          </Col>
 
-      <Button
-        className="mb-3"
-        onClick={() =>
-          setMode(mode === "view" ? "edit" : "view")
-        }
-      >
-        Switch to {mode === "view" ? "Edit" : "View"}
-      </Button>
+        </Row>
+      </Container>
+
+      {mode === "view" ? (
+        <div>
+          <span>
+            Welcome to your morning routine! Here, tasks you add will repeat at an interval of days that you set.
+            You can add tasks by hitting the "Edit Routine" in the top right.  
+          </span>
+        </div>
+      ) : (
+        <div>
+          <span>
+            Here in edit mode, you can add, delete, or modify tasks! Switch back to "View Routine" to interact with them.
+          </span>
+        </div>
+      )}
+ 
+      
 
       <Form.Group className="mb-3">
         <Form.Label>
@@ -187,6 +225,8 @@ export default function MorningRoutine() {
           setNewStartDate={setNewStartDate}
         />
       )}
-    </Container>
+      <br></br>
+    </div>
+    </div>
   );
 }

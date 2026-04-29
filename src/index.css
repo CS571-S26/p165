@@ -23,7 +23,7 @@
 }
 
 .navbar-morning {
-    background: rgba(255, 140, 0, 0.15) !important;
+    background: linear-gradient(to bottom,rgba(255, 100, 0, 0.4),rgba(255, 140, 0, 0.12)) !important;
 }
 
 .navbar-night {
