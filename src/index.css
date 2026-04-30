@@ -10,7 +10,8 @@
 }
 
 .page-background {
-    background-image: linear-gradient(to bottom, #e0c3fc 0%, #8ec5fc 100%);
+    background-image: linear-gradient(to bottom, #e0c3fc 60%, #8ec5fc 100%);
+    min-height: 100vh;
 }
 
 .navbar-base {
@@ -27,7 +28,7 @@
 }
 
 .navbar-night {
-    background: rgba(0, 123, 255, 0.15) !important;
+    background: linear-gradient(to bottom,rgba(0, 123, 255, 0.45),rgba(0, 123, 255, 0.12)) !important;
 }
 
 .display-row {
@@ -43,6 +44,7 @@
 
 * {
     font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
 }
 
 .top-bar {
