@@ -1,22 +1,30 @@
-export default function TaskItem({ task, selectedTasks, toggleSelected }) {
-  const isSelected = selectedTasks?.includes(task.id);
+import { useLocation } from "react-router-dom"; 
+
+export default function TaskItem(props) {
+  const isSelected = props.selectedTasks?.includes(props.task.id);
+
+  const location = useLocation();
+  
+  const isMorning = location.pathname.includes("morning");
+
+  const baseClass = isMorning ? "morning-routine-task-card" : "night-routine-task-card";
 
   return (
     <div
-      className={`morning-routine-task-card ${
+      className={`${baseClass} ${
         isSelected ? "selected" : ""
       }`}
       role="button"
       tabIndex={0}
-      onClick={() => toggleSelected(task.id)}
+      onClick={() => props.toggleSelected(props.task.id)}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
-          toggleSelected(task.id);
+          props.toggleSelected(props.task.id);
         }
       }}
     >
-      <span className="task-text">{task.name}</span>
+      <span className="task-text">{props.task.name}</span>
     </div>
   );
 }
