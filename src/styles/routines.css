@@ -9,7 +9,7 @@
         rgba(0, 123, 255, 0.05)
     );
 
-    width: 100px;
+    max-width: 300px;
     height: 100px;
 
     display: flex;
@@ -27,7 +27,6 @@
     will-change: transform;
 }
 
-/* Hover shadow only (no color change) */
 .night-routine-card:hover {
     transform: scale(1.06) translateY(-4px);
     box-shadow: 0 16px 40px rgba(0, 123, 255, 0.45);
@@ -75,6 +74,25 @@
 .night-routine-card-front-page:active {
     transform: scale(0.97) translateY(0px);
     box-shadow: 0 6px 16px rgba(0, 123, 255, 0.25);
+}
+
+.night-routine-background {
+    background-image: linear-gradient(to top,rgba(0, 123, 255, 0.45),rgba(0, 123, 255, 0.12));
+    min-height: 100vh;
+}
+
+.night-routine-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0px 20px;
+    background-color: white;
+    box-shadow: 0 8px 24px rgba(0, 123, 255, 0.25);
+    border-radius: 20px;
 }
 
 .morning-routine-card {
