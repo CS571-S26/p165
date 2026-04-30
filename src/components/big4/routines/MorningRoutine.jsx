@@ -178,30 +178,35 @@ export default function MorningRoutine() {
         </div>
       )}
  
-      <Form.Group className="mb-3">
-        <Form.Label>
-          {isToday
-            ? "Today"
-            : `Preview: ${formatUSDate(selectedDate)}`}
-        </Form.Label>
-
-        <Form.Control
-          type="date"
-          value={selectedDate}
-          onChange={(e) => setSelectedDate(e.target.value)}
-        />
-      </Form.Group>
-
       {mode === "view" ? (
         <Container>
-          <ViewMode 
+          <Form.Group className="d-flex flex-column align-items-center">
+            <Form.Label>
+              {isToday
+                ? "Today"
+                : `Preview: ${formatUSDate(selectedDate)}`}
+            </Form.Label>
+
+            <Form.Control
+              type="date"
+              value={selectedDate}
+              onChange={(e) => setSelectedDate(e.target.value)}
+              style={{maxWidth: "200px"}}
+            />
+          </Form.Group>
+          <br></br>
+
+          <ViewMode
             visibleTasks={visibleTasks}
             selectedDate={selectedDate}
             completeSelectedTasks={completeSelectedTasks}
             selectedTasks={selectedTasks}
             setSelectedTasks={setSelectedTasks}
           />
-          <h5 className="mt-4">Completed</h5>
+
+          {completedTasks.length > 0 && (
+            <h5 className="mt-4">Completed</h5>
+          )}
 
           <Container fluid>
             <Row className="g-3 mt-3">
@@ -220,6 +225,7 @@ export default function MorningRoutine() {
               ))}
             </Row>
           </Container>
+
         </Container>
       ) : (
         <EditMode

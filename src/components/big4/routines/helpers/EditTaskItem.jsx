@@ -1,4 +1,4 @@
-import { ListGroup, Row, Col, Form, Button } from "react-bootstrap";
+import { ListGroup, Row, Col, Form, Card } from "react-bootstrap";
 
 export default function EditTaskItem(props) {
   return (
@@ -40,12 +40,12 @@ export default function EditTaskItem(props) {
         </Col>
 
         <Col>
-            <Button
-                variant="danger"
+            <Card
+                className="morning-routine-card"
                 onClick={() => props.deleteTask(props.task.id)}
             >
                 Delete
-          </Button>
+          </Card>
         </Col>
       </Row>
     </ListGroup.Item>

@@ -4,7 +4,6 @@ import AddTaskForm from "./AddTaskForm";
 export default function EditMode(props) {
   return (
     <div>
-      <h4>Add Task</h4>
       <AddTaskForm
         newTaskName={props.newTaskName}
         setNewTaskName={props.setNewTaskName}
@@ -15,7 +14,7 @@ export default function EditMode(props) {
         setNewStartDate={props.setNewStartDate}
       />
 
-      <h5>Edit Tasks</h5>
+      <h4>Edit Tasks</h4>
       <EditTaskList 
         tasks={props.tasks} 
         updateTask={props.updateTask}
