@@ -146,7 +146,7 @@ export default function NightRoutine() {
               </Card>
             </Col>
           <Col className="text-center">
-            <h1>Night Routine</h1>
+            <h1 style={{marginLeft: "100px"}}>Night Routine</h1>
           </Col>
           <Col xs="auto" className="d-flex justify-content-end">
             <Card
@@ -166,8 +166,8 @@ export default function NightRoutine() {
       {mode === "view" ? (
         <div>
           <span>
-            Welcome to your morning routine! Here, tasks you add will repeat at an interval of days that you set.
-            You can add tasks by hitting the "Edit Routine" in the top right.  
+            Welcome to your night routine! Here, tasks you add will repeat at an interval of days that you set.
+            You can add tasks by hitting the "Edit Routine" in the top right. 
           </span>
         </div>
       ) : (

@@ -1,11 +1,19 @@
 import { useState } from "react";
 import { Button, Modal, Form, Card } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 
 export default function AddTaskForm(props) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const location = useLocation();
+  const isMorning = location.pathname.includes("morning");
+
+  const baseClass = isMorning
+    ? "morning-routine-card"
+    : "night-routine-card";
 
   function handleAdd() {
     props.addTask();
@@ -14,12 +22,18 @@ export default function AddTaskForm(props) {
 
   return (
     <>
+      {/* Trigger */}
       <div className="d-flex justify-content-center mb-3">
-        <Card className="morning-routine-card" onClick={handleShow}>
+        <Card
+          as="button"
+          type="button"
+          className={baseClass}
+          aria-label="Open add task modal"
+          onClick={handleShow}
+        >
           Add Task
         </Card>
       </div>
-      <br></br>
 
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
@@ -28,18 +42,22 @@ export default function AddTaskForm(props) {
 
         <Modal.Body>
           <Form>
+            {/* Task Name */}
             <Form.Group className="mb-3">
               <Form.Label>Task Name</Form.Label>
               <Form.Control
-                placeholder="Task name"
+                aria-label="Task name"
+                placeholder="Enter task name"
                 value={props.newTaskName}
                 onChange={(e) => props.setNewTaskName(e.target.value)}
               />
             </Form.Group>
 
+            {/* Repeat Interval */}
             <Form.Group className="mb-3">
               <Form.Label>Repeat Interval (days)</Form.Label>
               <Form.Control
+                aria-label="Repeat interval in days"
                 type="number"
                 min={1}
                 max={7}
@@ -50,9 +68,11 @@ export default function AddTaskForm(props) {
               />
             </Form.Group>
 
+            {/* Start Date */}
             <Form.Group>
               <Form.Label>Start Date</Form.Label>
               <Form.Control
+                aria-label="Start date"
                 type="date"
                 value={props.newStartDate}
                 onChange={(e) =>
@@ -68,7 +88,7 @@ export default function AddTaskForm(props) {
             Cancel
           </Button>
 
-          <Card className="morning-routine-card" onClick={handleAdd}>
+          <Card className={baseClass} onClick={handleAdd}>
             Add Task
           </Card>
         </Modal.Footer>

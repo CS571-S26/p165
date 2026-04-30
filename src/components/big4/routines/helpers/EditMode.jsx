@@ -14,11 +14,17 @@ export default function EditMode(props) {
         setNewStartDate={props.setNewStartDate}
       />
 
-      <h4>Edit Tasks</h4>
-      <EditTaskList 
-        tasks={props.tasks} 
-        updateTask={props.updateTask}
-        deleteTask={props.deleteTask} />
+      {props.tasks.length > 0 ? (
+        <div>
+          <h4>Edit Tasks</h4>
+          <EditTaskList 
+            tasks={props.tasks} 
+            updateTask={props.updateTask}
+            deleteTask={props.deleteTask} />
+        </div>
+      ) : (
+        <span>No tasks to edit yet!</span>
+      )}
     </div>
   );
 }

@@ -78,3 +78,9 @@
 
     line-height: 1.2;
 }
+
+.form-control:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: black !important;
+}
