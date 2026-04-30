@@ -1,4 +1,4 @@
-import { Button } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import TaskList from "./TaskList";
 
 
@@ -17,11 +17,20 @@ export default function ViewMode(props) {
       <TaskList 
         tasks={props.visibleTasks} 
         toggleSelected={toggleSelected}
+        selectedTasks={props.selectedTasks}
       />
-      <Button
-        onClick={() => props.completeSelectedTasks(props.selectedDate)}>
-        Complete Selected Tasks
-      </Button>
+      <br></br>
+      {props.visibleTasks.length > 0 && (
+        <div className="d-flex justify-content-center mt-3">
+          <Card
+            as="button"
+            className="morning-routine-card complete-button"
+            onClick={() => props.completeSelectedTasks(props.selectedDate)}
+          >
+            Complete Selected Tasks
+          </Card>
+        </div>
+      )}
     </div>
   );
 }

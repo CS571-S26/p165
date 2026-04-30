@@ -160,8 +160,6 @@ export default function ToDo() {
           >
             Complete Selected Tasks
           </Card>
-        
-
         ) : (
           <p>You have no remaining tasks. To start, hit the "Add Task" button in the top right!</p>
         )}

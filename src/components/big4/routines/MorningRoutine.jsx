@@ -31,13 +31,17 @@ export default function MorningRoutine() {
 
   const [mode, setMode] = useState("view");
 
-  const today = new Date().toISOString().split("T")[0];
-  const [selectedDate, setSelectedDate] = useState(
-    new Date().toISOString().split("T")[0]
-  );
-  const [newStartDate, setNewStartDate] = useState(
-    new Date().toISOString().split("T")[0]
-  );
+  const today = new Date().toLocaleDateString("en-CA");
+
+  const [selectedDate, setSelectedDate] = useState(today);
+  const [newStartDate, setNewStartDate] = useState(today);
+
+  const isToday = selectedDate === today;
+
+  function formatUSDate(dateStr) {
+    const [year, month, day] = dateStr.split("-");
+    return `${month}/${day}/${year}`;
+  }
 
   const [tasks, setTasks] = useState(() => loadTasks());
   const [selectedTasks, setSelectedTasks] = useState([]);
@@ -126,8 +130,6 @@ export default function MorningRoutine() {
     );
   }
 
-  const isToday = selectedDate === new Date().toISOString().split("T")[0];
-
   return (
     <div className="morning-routine-background">
     <div className="morning-routine-layout">
@@ -176,13 +178,11 @@ export default function MorningRoutine() {
         </div>
       )}
  
-      
-
       <Form.Group className="mb-3">
         <Form.Label>
           {isToday
             ? "Today"
-            : `Preview: ${selectedDate}`}
+            : `Preview: ${formatUSDate(selectedDate)}`}
         </Form.Label>
 
         <Form.Control
@@ -203,13 +203,23 @@ export default function MorningRoutine() {
           />
           <h5 className="mt-4">Completed</h5>
 
-          <ListGroup>
-            {completedTasks.map((task) => (
-              <ListGroup.Item key={task.id}>
-                {task.name}
-              </ListGroup.Item>
-            ))}
-          </ListGroup>
+          <Container fluid>
+            <Row className="g-3 mt-3">
+              {completedTasks.map((task) => (
+                <Col
+                  key={task.id}
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  lg={3}
+                >
+                  <div className="task-card morning-routine-completed-task">
+                    <span className="task-text">{task.name}</span>
+                  </div>
+                </Col>
+              ))}
+            </Row>
+          </Container>
         </Container>
       ) : (
         <EditMode

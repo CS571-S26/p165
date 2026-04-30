@@ -13,7 +13,7 @@ export default function HomePage()
             <Row>
                 <Col>
                 <br></br>
-                    <Card className="list-card" onClick={() => navigate("/list")}>To Do List</Card>
+                    <Card className="list-card-front-page" onClick={() => navigate("/list")}>To Do List</Card>
                 </Col>
                 <Col>
                     <div className="display-text">
@@ -29,7 +29,7 @@ export default function HomePage()
         <div className="display-row">
             <Row>
                 <Col>
-                    <Card className="morning-routine-card" onClick={() => navigate("/morning_routine")}>Morning Routine</Card>
+                    <Card className="morning-routine-card-front-page" onClick={() => navigate("/morning_routine")}>Morning Routine</Card>
                 </Col>
                 <Col>
                     <div className="display-text">
@@ -46,7 +46,7 @@ export default function HomePage()
         <div className="display-row">
             <Row>
                 <Col>
-                    <Card className="night-routine-card" onClick={() => navigate("/night_routine")}>Night Routine</Card>
+                    <Card className="night-routine-card-front-page" onClick={() => navigate("/night_routine")}>Night Routine</Card>
                 </Col>
                 <Col>
                     <div className="display-text">

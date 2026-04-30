@@ -161,6 +161,74 @@
     min-height: 100vh;
 }
 
+.morning-routine-task-card {
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 10px;
+
+    background: white;
+
+    width: 100%;
+    max-width: 700px;
+
+    height: auto;
+    max-height: 300px;
+
+    display: flex;
+    align-items: center;
+
+    box-shadow: 0 8px 24px rgba(255, 100, 0, 0.4);
+
+    cursor: pointer;
+
+    transition: 
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.morning-routine-task-card:hover {
+    transform: scale(1.06) translateY(-4px);
+    box-shadow: 0 16px 40px rgba(255, 100, 0, 0.55);
+}
+
+.morning-routine-task-card:active {
+    transform: scale(0.97) translateY(0px);
+    box-shadow: 0 6px 16px rgba(255, 100, 0, 0.3);
+
+}
+
+.morning-routine-task-card.selected {
+    transform: scale(1.06) translateY(-4px);
+    box-shadow: 0 16px 40px rgba(255, 100, 0, 0.55);
+    background: linear-gradient(
+        145deg,
+        rgba(255, 140, 0, 0.12),
+        rgba(255, 120, 0, 0.05)
+    );
+}
+
+.morning-routine-completed-task {
+    border: 3px solid #000;
+    padding: 12px;
+    border-radius: 10px;
+
+    background: linear-gradient(
+        145deg,
+        rgba(255, 140, 0, 0.12),
+        rgba(255, 120, 0, 0.05)
+    );
+
+    width: 100%;
+    max-width: 700px;
+
+    height: auto;
+    max-height: 300px;
+
+    display: flex;
+    align-items: center;
+    font-style: italic;
+}
+
 .morning-routine-layout {
     display: flex;
     flex-direction: column;

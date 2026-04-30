@@ -1,14 +1,22 @@
-import { ListGroup, Form } from "react-bootstrap";
+export default function TaskItem({ task, selectedTasks, toggleSelected }) {
+  const isSelected = selectedTasks?.includes(task.id);
 
-export default function TaskItem(props) {
   return (
-    <ListGroup.Item>
-      <Form.Check 
-        type="checkbox" 
-        label={props.task.name}
-        checked={props.selectedTasks?.includes(props.task.id)}
-        onChange={() => props.toggleSelected(props.task.id)}
-        />
-    </ListGroup.Item>
+    <div
+      className={`morning-routine-task-card ${
+        isSelected ? "selected" : ""
+      }`}
+      role="button"
+      tabIndex={0}
+      onClick={() => toggleSelected(task.id)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggleSelected(task.id);
+        }
+      }}
+    >
+      <span className="task-text">{task.name}</span>
+    </div>
   );
 }
